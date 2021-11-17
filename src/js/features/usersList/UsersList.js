@@ -1,13 +1,16 @@
 import { getData } from "../../utils/getData";
 import { User } from "./User";
 
+import { matchSearch } from "./utils/filter";
+
 export class UsersList {
   usersList = []
   filter = {
     category: "name",
-    field: "last",
-    order: "desc"
-  };;
+    field: "first",
+    order: "desc",
+    search: ""
+  };
 
   constructor({
     url, selector
@@ -39,26 +42,27 @@ export class UsersList {
     return getData(this.url).then(({ results }) => results);
   }
 
-  setFilter(filter) {
-    this.filter = filter;
+  setFilter(data) {
+    this.filter = { ...this.filter, ...data }
+    localStorage.setItem("Filter", JSON.stringify(this.filter));
+    this.render(matchSearch(this.usersList, this.filter.search));
   }
 
-  filterData(dataList) {
-    const { filter } = this;
-    // console.log(dataList);
-    switch (filter.order) {
-      case "asc": dataList.sort((a, b) => {
-        if (filter.category) {
-          return a[filter.category][filter.field] > b[filter.category][filter.field] ? 1 : -1;
+  sortData(dataList) {
+    const { order, category, field } = this.filter;
+    switch (order) {
+      case "asc": return dataList.sort((a, b) => {
+        if (category) {
+          return a[category][field] > b[category][field] ? 1 : -1;
         } else {
-          return a[filter.field] > b[filter.field] ? 1 : -1
-        }
+          return a[field] > b[field] ? 1 : -1
+        };
       });
-      case "desc": dataList.sort((a, b) => {
-        if (filter.category) {
-          return a[filter.category][filter.field] > b[filter.category][filter.field] ? 1 : -1;
+      case "desc": return dataList.sort((a, b) => {
+        if (category) {
+          return a[category][field] > b[category][field] ? -1 : 1;
         } else {
-          return a[filter.field] > b[filter.field] ? 1 : -1
+          return a[field] > b[field] ? -1 : 1
         }
       });
       default: {
@@ -70,7 +74,7 @@ export class UsersList {
   render(usersList = this.usersList) {
     this.container.innerHTML = "";
 
-    this.filterData(usersList).forEach(userData => {
+    this.sortData(usersList).forEach(userData => {
       const user = new User(userData);
       if (this.modal) {
         user.renderForModal(this.container, this.modal);
@@ -85,6 +89,7 @@ export class UsersList {
       this.usersList = data;
       this.render(data);
     });
+    return this;
   }
 
   setModal(modal) {

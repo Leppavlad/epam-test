@@ -21,7 +21,14 @@ export class User {
     const userWrapper = document.createElement("div");
     userWrapper.className = "user user__short";
     userWrapper.innerHTML = `
-      <div class="user__data">${name.first} ${name.last}</div>
+      <div class="user__data">
+        <div class="user__image">
+          <img src="${picture.medium}">
+        </div>
+        <div class="user__data>
+          <div class="user__name">${name.title}. ${name.first} ${name.last}</div>
+        </div>
+      </div>
     `;
     parentElement.append(userWrapper);
   }

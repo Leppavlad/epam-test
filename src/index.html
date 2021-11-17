@@ -9,9 +9,44 @@
 </head>
 
 <body>
-  <h2>Epam</h2>
-  <div id="usersList"></div>
+  <main class="main">
+    <div class="container">
+      <section class="usersList">
+        <div class="usersList__header">
+          <h2 class="main__title">Epam</h2>
+          <div class="usersList__filter">
+            <form id="usersFilter">
+              <div class="usersList__filter__controller">
+                <span>Search</span>
+                <input type="search" class="search" placeholder="">
+              </div>
+              <div class="usersList__filter__controller">
+                <span>Sort by</span>
+                <select class="select">
+                  <option value="first:name">Firstname</option>
+                  <option value="last:name">Lastname</option>
+                  <option value="city:location">City</option>
+                </select>
+              </div>
+              <div class="usersList__filter__controller">
+                <span>Order</span>
+                <select class="select">
+                  <option value="desc:order">Desc</option>
+                  <option value="asc:order">Asc</option>
+                </select>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="usersList__content">
+          <div id="usersList"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
   <div id="usersModal"></div>
+
   <script type="module" src="/main.js"></script>
 </body>
 
