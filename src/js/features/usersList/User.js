@@ -25,11 +25,16 @@ export class User {
         <div class="user__image">
           <img src="${picture.medium}">
         </div>
-        <div class="user__data>
-          <div class="user__name">${name.title}. ${name.first} ${name.last}</div>
+        <div class="user__info">
+          <div class="user__info__name">${name.title}. ${name.first} ${name.last}</div>
         </div>
       </div>
     `;
+
+    userWrapper.addEventListener("click", () => {
+      modal.open();
+      modal.fillData(this.data);
+    })
     parentElement.append(userWrapper);
   }
 }

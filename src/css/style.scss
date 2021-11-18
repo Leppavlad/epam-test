@@ -1,6 +1,22 @@
-.usersList {
-  &__header {
-    padding: 30px;
-    border: 1px dotted;
-  }
+@import "./modal";
+@import "./fonts";
+@import "./usersList";
+@import "./usersFilter";
+@import "./user";
+
+html {
+  font-size: 10px;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  font-size: 1.8rem;
+  background-color: #222;
+}
+
+.container-sm {
+  max-width: 500px;
+  margin: 0 auto;
 }

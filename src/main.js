@@ -5,7 +5,10 @@ import './css/style.scss'
 const usersList = new UsersList({
   url: "https://api.randomuser.me/1.0/?results=50&nat=gb,us&inc=gender,name,location,email,phone,picture",
   selector: "#usersList"
-}).setModal(new UsersModal("#usersModal")).init();
+}).setModal(new UsersModal({
+  selector: "#usersModal",
+  activeClass: "usersModal_active"
+})).init();
 
 const usersFilter = document.querySelector("#usersFilter");
 usersFilter.addEventListener("change", ({ target }) => {
