@@ -16,6 +16,11 @@ body {
   background-color: #222;
 }
 
+body.onModal {
+  height: 100vh;
+  overflow: hidden;
+}
+
 .container-sm {
   max-width: 500px;
   margin: 0 auto;

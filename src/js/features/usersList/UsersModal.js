@@ -42,14 +42,33 @@ export class UsersModal {
     contactPhone.innerHTML = `<a href="tel:${phone}">${phone}</a>`;
     contactEmail.innerHTML = `<a href="mailto:${email}">${email}</a>`;
     image.setAttribute("src", large);
+  }
 
-    console.log(this.modalOutputs);
+  getScrollWidth() {
+    const div = document.createElement('div');
+
+    div.style.overflowY = 'scroll';
+    div.style.width = '50px';
+    div.style.height = '50px';
+
+    document.body.append(div);
+    const scrollWidth = div.offsetWidth - div.clientWidth;
+
+    div.remove();
+    return scrollWidth;
   }
 
   open() {
     this.modal.classList.add(this.activeClass);
+    document.body.classList.add("onModal");
+    document.body.style.paddingRight = this.getScrollWidth() + "px";
+
   }
   close() {
     this.modal.classList.remove(this.activeClass);
+    document.body.classList.remove("onModal");
+    document.body.style.paddingRight = "0";
+
+    document.querySelector("[data-modalContent='image']").setAttribute("src", "#");
   }
 }

@@ -32,8 +32,8 @@ export class User {
     `;
 
     userWrapper.addEventListener("click", () => {
-      modal.open();
       modal.fillData(this.data);
+      modal.open();
     })
     parentElement.append(userWrapper);
   }

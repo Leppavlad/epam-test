@@ -21,7 +21,6 @@ usersFilter.addEventListener("change", ({ target }) => {
     } else {
       usersList.setFilter({ category, field });
     }
-
   }
 });
 usersFilter.querySelector(".search").addEventListener("input", ({ target: { value: input } }) => {

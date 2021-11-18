@@ -1,6 +1,7 @@
 .usersModal {
   display: none;
   position: fixed;
+  z-index: 999;
   top: 0;
   width: 100vw;
   height: 100vh;

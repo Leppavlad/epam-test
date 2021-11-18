@@ -5,6 +5,7 @@
   &__header {
     box-sizing: border-box;
     position: sticky;
+    z-index: 100;
     top: 0;
     left: 0;
     height: 80px;
